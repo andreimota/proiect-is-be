@@ -8,7 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProiectIS-BE.Common\ProiectIS-BE.Common.csproj" />
+    <ProjectReference Include="..\ProiectIS-BE.DAL\ProiectIS-BE.Data.csproj" />
   </ItemGroup>
 
 </Project>
