@@ -1,4 +1,4 @@
-﻿using ProiectIS_BE.Data.Entities;
+﻿using ProiectIS_BE.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace ProiectIS_BE.Service.Interfaces
 {
-    public interface IUserService
+    public interface IArticleService
     {
-        string RegisterUser(User user);
-
-        string Authenticate(User user);
+        IEnumerable<Article> GetArticles();
     }
 }

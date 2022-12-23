@@ -36,5 +36,19 @@ namespace ProiectIS_BE.Service.Implementations
 
             return _authService.GenerateJwtToken(user.Id);
         }
+
+        public string Authenticate(User user)
+        {
+            var existingUser = _dbContext.Users.Where(u => u.Username == user.Username).FirstOrDefault();
+            
+            if (existingUser != null && existingUser.Password == _authService.Encrypt(user.Password + existingUser.Salt))
+            {
+                return _authService.GenerateJwtToken(existingUser.Id);
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

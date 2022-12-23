@@ -21,15 +21,19 @@ namespace ProiectIS_BE.Common
         }
 
         public string GenerateJwtToken(int id)
-        {
-            byte[] key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings").GetSection("Secret").Value);
+        {   
+            byte[] key = Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]);
+
+
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { 
-                    new Claim("id", id.ToString()),  
+                Subject = new ClaimsIdentity(new[] {
+                    new Claim("id", id.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);

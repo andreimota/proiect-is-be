@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectIS_BE.Data;
 
@@ -11,9 +12,11 @@ using ProiectIS_BE.Data;
 namespace ProiectISBE.DAL.Migrations
 {
     [DbContext(typeof(CodeAppContext))]
-    partial class CodeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221222050715_ArticlesMigration2")]
+    partial class ArticlesMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

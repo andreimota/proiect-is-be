@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectIS_BE.Data;
 
@@ -11,9 +12,11 @@ using ProiectIS_BE.Data;
 namespace ProiectISBE.DAL.Migrations
 {
     [DbContext(typeof(CodeAppContext))]
-    partial class CodeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221222045819_ArticlesMigration")]
+    partial class ArticlesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,10 +36,6 @@ namespace ProiectISBE.DAL.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Technology")
                         .IsRequired()
