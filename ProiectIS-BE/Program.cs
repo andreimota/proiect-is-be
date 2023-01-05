@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProiectIS_BE.Common;
+using ProiectIS_BE.Common.Implementations;
 using ProiectIS_BE.Common.Interfaces;
 using ProiectIS_BE.Data;
 using ProiectIS_BE.Service.Implementations;
@@ -68,10 +69,10 @@ builder.Services.AddDbContext<CodeAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CodeAppDatabase"));
 });
 
-
+builder.Services.AddSingleton<ICompilerService, CompilerService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IArticleService, ArticleService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 
 var app = builder.Build();

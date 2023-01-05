@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectIS_BE.Data;
 
@@ -11,9 +12,11 @@ using ProiectIS_BE.Data;
 namespace ProiectISBE.DAL.Migrations
 {
     [DbContext(typeof(CodeAppContext))]
-    partial class CodeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221226213623_ArticleHasDifficulty")]
+    partial class ArticleHasDifficulty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,34 +33,6 @@ namespace ProiectISBE.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Articles", (string)null);
-                });
-
-            modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Course", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,9 +45,6 @@ namespace ProiectISBE.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<DateTime>("PublishedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Technology")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -83,9 +55,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Paragraph", b =>
@@ -100,6 +70,7 @@ namespace ProiectISBE.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CodeSection")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Order")
@@ -113,7 +84,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Paragraphs", (string)null);
+                    b.ToTable("Paragraphs");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.Data.Entities.User", b =>
@@ -123,10 +94,6 @@ namespace ProiectISBE.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<byte[]>("Avatar")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -154,25 +121,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Article", b =>
-                {
-                    b.HasOne("ProiectIS_BE.DAL.Entities.Course", null)
-                        .WithMany("Articles")
-                        .HasForeignKey("CourseId");
-                });
-
-            modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Course", b =>
-                {
-                    b.HasOne("ProiectIS_BE.Data.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Paragraph", b =>
@@ -185,11 +134,6 @@ namespace ProiectISBE.DAL.Migrations
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Article", b =>
                 {
                     b.Navigation("Paragraphs");
-                });
-
-            modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Course", b =>
-                {
-                    b.Navigation("Articles");
                 });
 #pragma warning restore 612, 618
         }

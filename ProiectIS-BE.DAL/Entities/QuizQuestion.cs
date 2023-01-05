@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProiectIS_BE.DAL.Entities
 {
-    public class Paragraph
+    public class QuizQuestion
     {
         public int Id { get; set; }
-        public string TextSection { get; set; }
-        public string? CodeSection { get; set; }
-        public int Order { get; set; }
+        public string Text { get; set; }
+
+        public List<QuizAnswer> Answers { get; set; }
     }
 }

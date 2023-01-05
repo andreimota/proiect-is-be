@@ -9,18 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProiectIS-BE.Api", "Proiect
 		{25F0D99E-E837-46BF-82DF-132101D11744} = {25F0D99E-E837-46BF-82DF-132101D11744}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProiectIS-BE.Data", "ProiectIS-BE.DAL\ProiectIS-BE.Data.csproj", "{688F1F50-1286-48AA-B5D6-E23223371032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProiectIS-BE.Data", "ProiectIS-BE.DAL\ProiectIS-BE.Data.csproj", "{688F1F50-1286-48AA-B5D6-E23223371032}"
 	ProjectSection(ProjectDependencies) = postProject
 		{02838553-9167-4427-92FA-766CBD6A8BCD} = {02838553-9167-4427-92FA-766CBD6A8BCD}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProiectIS-BE.Service", "ProiectIS-BE.Service\ProiectIS-BE.Service.csproj", "{25F0D99E-E837-46BF-82DF-132101D11744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProiectIS-BE.Service", "ProiectIS-BE.Service\ProiectIS-BE.Service.csproj", "{25F0D99E-E837-46BF-82DF-132101D11744}"
 	ProjectSection(ProjectDependencies) = postProject
 		{02838553-9167-4427-92FA-766CBD6A8BCD} = {02838553-9167-4427-92FA-766CBD6A8BCD}
 		{688F1F50-1286-48AA-B5D6-E23223371032} = {688F1F50-1286-48AA-B5D6-E23223371032}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProiectIS-BE.Common", "ProiectIS-BE.Common\ProiectIS-BE.Common.csproj", "{02838553-9167-4427-92FA-766CBD6A8BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProiectIS-BE.Common", "ProiectIS-BE.Common\ProiectIS-BE.Common.csproj", "{02838553-9167-4427-92FA-766CBD6A8BCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

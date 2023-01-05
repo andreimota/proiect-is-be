@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProiectIS_BE.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,7 @@ namespace ProiectIS_BE.DAL.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public string Technology { get; set; }
-        public byte[] Image { get; set; }
+        public int Order { get; set; }
 
         public List<Paragraph> Paragraphs { get; set; }
     }

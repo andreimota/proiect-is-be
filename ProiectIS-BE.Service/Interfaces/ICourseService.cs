@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProiectIS_BE.Service.Interfaces
 {
-    public interface IArticleService
+    public interface ICourseService
     {
-        IEnumerable<Article> GetArticles();
+        IEnumerable<Course> GetCourses();
+
+        Course GetCourse(int courseId);
     }
 }

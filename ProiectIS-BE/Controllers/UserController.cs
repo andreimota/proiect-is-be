@@ -21,7 +21,6 @@ namespace ProiectIS_BE.Controllers
             _userService = userService;
         }
 
-        [Authorize]
         [HttpPost("register")]
         public ActionResult<string> Register(UserModel user) 
         {

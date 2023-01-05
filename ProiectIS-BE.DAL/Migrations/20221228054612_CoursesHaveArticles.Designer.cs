@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectIS_BE.Data;
 
@@ -11,9 +12,11 @@ using ProiectIS_BE.Data;
 namespace ProiectISBE.DAL.Migrations
 {
     [DbContext(typeof(CodeAppContext))]
-    partial class CodeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221228054612_CoursesHaveArticles")]
+    partial class CoursesHaveArticles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Course", b =>
@@ -85,7 +88,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Paragraph", b =>
@@ -113,7 +116,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Paragraphs", (string)null);
+                    b.ToTable("Paragraphs");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.Data.Entities.User", b =>
@@ -154,7 +157,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Article", b =>

@@ -2,6 +2,7 @@
 using ProiectIS_BE.Data.Entities;
 using ProiectIS_BE.Api.Models;
 using ProiectIS_BE.Models;
+using ProiectIS_BE.Models.User;
 
 namespace ProiectIS_BE.Profiles
 {
@@ -11,6 +12,8 @@ namespace ProiectIS_BE.Profiles
         {
             CreateMap<UserModel, User>().ReverseMap();
             CreateMap<AuthenticateModel, User>().ReverseMap();
+
+            CreateMap<User, AuthorModel>();
         }
     }
 }
