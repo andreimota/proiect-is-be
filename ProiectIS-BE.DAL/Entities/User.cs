@@ -10,7 +10,7 @@ namespace ProiectIS_BE.Data.Entities
     public class User
     {
         public int Id { get; set; }
-        public byte[] Avatar { get; set; }
+        public byte[]? Avatar { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -18,8 +18,10 @@ namespace ProiectIS_BE.Data.Entities
         public string Password { get; set; }
         public string Salt { get; set; }
 
+        public ICollection<Course> Courses { get; set; }
+        public List<UserCourses> CourseUsers { get; set; }
 
-        public List<Course> AttemptedCourses { get; set; }
-        public List<CourseUser> CourseUserMapping { get; set; }
+        public ICollection<Exercise> Exercises { get; set; }
+        public List<UserExercises> UserExercises { get; set; }
     }
 }

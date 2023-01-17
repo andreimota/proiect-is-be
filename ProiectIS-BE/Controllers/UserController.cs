@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProiectIS_BE.Api.Models;
 using ProiectIS_BE.Data.Entities;
 using ProiectIS_BE.Models;
+using ProiectIS_BE.Models.User;
 using ProiectIS_BE.Service.Interfaces;
 
 namespace ProiectIS_BE.Controllers
@@ -22,10 +23,10 @@ namespace ProiectIS_BE.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult<string> Register(UserModel user) 
+        public ActionResult<string> Register(UserModel user)
         {
             var mappedUser = _mapper.Map<UserModel, User>(user);
-            
+
             var jwt = _userService.RegisterUser(mappedUser);
 
             return Created("", "Created successfully");
@@ -40,6 +41,16 @@ namespace ProiectIS_BE.Controllers
 
             if (jwt != "") return Ok(jwt);
             else return BadRequest("Incorrect username or password.");
+        }
+
+        [HttpGet("{userId}")]
+        public IActionResult GetDashboard(int userId)
+        {
+            var user = _userService.GetUserDashboard(userId);
+
+            var userDashboard = _mapper.Map<UserDashboardModel>(user);
+
+            return Ok(userDashboard);
         }
     }
 }

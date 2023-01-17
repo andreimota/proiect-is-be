@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProiectIS_BE.DAL.Entities
 {
-    public class CourseUser
+    public class UserCourses
     {
         public int Id { get; set; }
           

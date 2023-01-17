@@ -18,13 +18,13 @@ namespace ProiectIS_BE.DAL.Entities
         public string Difficulty { get; set; }
         public byte[] Image { get; set; }
 
-        [NotMapped]
-        public User Author { get; set; }
+        public string AuthorName { get; set; }
 
-        public Quiz Quiz { get; set; }
+        public int? QuizId { get; set; }
+        public Quiz? Quiz { get; set; }
         public List<Article> Articles { get; set; }
 
-        public List<User> UsersAttempted { get; set; }
-        public List<CourseUser> CourseUserMapping { get; set; }
+        public ICollection<User> Users { get; set; }
+        public List<UserCourses> CourseUsers { get; set; }
     }
 }

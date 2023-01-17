@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ProiectIS_BE.Common;
 using ProiectIS_BE.Common.Interfaces;
 using ProiectIS_BE.Data;
@@ -49,6 +50,26 @@ namespace ProiectIS_BE.Service.Implementations
             {
                 return "";
             }
+        }
+
+        public User GetUserDashboard(int userId)
+        {
+            var user = _dbContext.Set<User>()
+                .Include(p => p.UserExercises)
+                    .ThenInclude(p => p.Exercise)
+                .Include(p => p.CourseUsers)
+                    .ThenInclude(p => p.Course)
+                    .ThenInclude(p => p.Quiz)
+                    .ThenInclude(p => p.Questions)
+                .Where(user => user.Id == userId)
+                .FirstOrDefault();
+
+            if(user == null) 
+            {
+                throw new NullReferenceException("User was not found");
+            }
+
+            return user;
         }
     }
 }

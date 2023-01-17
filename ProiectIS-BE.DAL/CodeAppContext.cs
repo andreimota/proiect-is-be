@@ -17,6 +17,8 @@ namespace ProiectIS_BE.Data
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<QuizAnswer> QuizAnswers { get; set; }
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<UserExercises> UserExercises { get; set; }
 
         public CodeAppContext(DbContextOptions options) : base(options)
         {
@@ -30,33 +32,30 @@ namespace ProiectIS_BE.Data
 
         protected internal void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Course>()
                 .Property(p => p.Image)
-                .HasColumnType("image"); 
+                .HasColumnType("image");
+
+            modelBuilder.Entity<Course>()
+                .HasOne(p => p.Quiz)
+                .WithOne()
+                .HasForeignKey("QuizId");
 
             modelBuilder.Entity<User>()
                 .Property(p => p.Avatar)
                 .HasColumnType("image");
 
             modelBuilder.Entity<User>()
-                .HasMany(p => p.AttemptedCourses)
-                .WithMany(c => c.UsersAttempted)
-                .UsingEntity<CourseUser>(
-                    j => j
-                        .HasOne(pt => pt.Course)
-                        .WithMany(t => t.CourseUserMapping)
-                        .HasForeignKey(pt => pt.CourseId),
-                    j => j
-                        .HasOne(pt => pt.User)
-                        .WithMany(p => p.CourseUserMapping)
-                        .HasForeignKey(pt => pt.UserId),
-                    j =>
-                    {
-                        j.Property(pt => pt.StartedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                        j.Property(pt => pt.Points).HasDefaultValue(0);
-                    });
+                .HasMany(p => p.Courses)
+                .WithMany(c => c.Users)
+                .UsingEntity("UserCourses");
+
+            modelBuilder.Entity<User>()
+                .HasMany(p => p.Exercises)
+                .WithMany(p => p.Users)
+                .UsingEntity<UserExercises>();
         }
     }
 }

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProiectIS_BE.Service.Interfaces
 {
-    public interface ICourseService
+    public interface IQuizService
     {
-        IEnumerable<Course> GetCourses();
-        Course GetCourse(int courseId, int userId);
+        Quiz GetQuiz(int quizId);
+        void UpdateUserScore(int userId, int courseId, int score);
+        int GetCourseIdFromQuiz(int quizId);
     }
 }

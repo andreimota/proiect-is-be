@@ -73,6 +73,8 @@ builder.Services.AddSingleton<ICompilerService, CompilerService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IQuizService, QuizService>();
+builder.Services.AddScoped<IExerciseService, ExerciseService>();
 
 
 var app = builder.Build();

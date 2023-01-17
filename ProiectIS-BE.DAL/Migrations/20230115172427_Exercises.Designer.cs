@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectIS_BE.Data;
 
@@ -11,9 +12,11 @@ using ProiectIS_BE.Data;
 namespace ProiectISBE.DAL.Migrations
 {
     [DbContext(typeof(CodeAppContext))]
-    partial class CodeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230115172427_Exercises")]
+    partial class Exercises
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +38,6 @@ namespace ProiectISBE.DAL.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("CourseUser");
-                });
-
-            modelBuilder.Entity("ExerciseUser", b =>
-                {
-                    b.Property<int>("ExercisesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExercisesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("ExerciseUser");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Article", b =>
@@ -130,15 +118,7 @@ namespace ProiectISBE.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Difficulty")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("StartingCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Technology")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -330,32 +310,6 @@ namespace ProiectISBE.DAL.Migrations
                     b.ToTable("UserCourses");
                 });
 
-            modelBuilder.Entity("ProiectIS_BE.DAL.Entities.UserExercises", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExerciseId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserExercises");
-                });
-
             modelBuilder.Entity("ProiectIS_BE.Data.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -401,21 +355,6 @@ namespace ProiectISBE.DAL.Migrations
                     b.HasOne("ProiectIS_BE.DAL.Entities.Course", null)
                         .WithMany()
                         .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProiectIS_BE.Data.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ExerciseUser", b =>
-                {
-                    b.HasOne("ProiectIS_BE.DAL.Entities.Exercise", null)
-                        .WithMany()
-                        .HasForeignKey("ExercisesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -496,25 +435,6 @@ namespace ProiectISBE.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ProiectIS_BE.DAL.Entities.UserExercises", b =>
-                {
-                    b.HasOne("ProiectIS_BE.DAL.Entities.Exercise", "Exercise")
-                        .WithMany("UserExercises")
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProiectIS_BE.Data.Entities.User", "User")
-                        .WithMany("UserExercises")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exercise");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Article", b =>
                 {
                     b.Navigation("Paragraphs");
@@ -530,8 +450,6 @@ namespace ProiectISBE.DAL.Migrations
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Exercise", b =>
                 {
                     b.Navigation("TestCases");
-
-                    b.Navigation("UserExercises");
                 });
 
             modelBuilder.Entity("ProiectIS_BE.DAL.Entities.Quiz", b =>
@@ -552,8 +470,6 @@ namespace ProiectISBE.DAL.Migrations
             modelBuilder.Entity("ProiectIS_BE.Data.Entities.User", b =>
                 {
                     b.Navigation("CourseUsers");
-
-                    b.Navigation("UserExercises");
                 });
 #pragma warning restore 612, 618
         }

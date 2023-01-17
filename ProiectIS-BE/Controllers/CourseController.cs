@@ -30,15 +30,14 @@ namespace ProiectIS_BE.Controllers
             return Ok(mappedCourses);
         }
 
-        [HttpGet("{courseId}")]
-        public IActionResult GetCourse(int courseId)
+        [HttpGet("{courseId}/{userId}")]
+        public IActionResult GetCourse(int courseId, int userId)
         {
-            var course = _courseService.GetCourse(courseId);
+            var course = _courseService.GetCourse(courseId, userId);
 
             var mappedCourse = _mapper.Map<CourseModel>(course);
 
             return Ok(mappedCourse);
         }
-
     }
 }

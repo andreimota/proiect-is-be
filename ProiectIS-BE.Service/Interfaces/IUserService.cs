@@ -10,7 +10,7 @@ namespace ProiectIS_BE.Service.Interfaces
     public interface IUserService
     {
         string RegisterUser(User user);
-
         string Authenticate(User user);
+        public User GetUserDashboard(int userId);
     }
 }
