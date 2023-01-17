@@ -137,7 +137,7 @@ namespace ProiectIS_BE.Service.Implementations
         {
             var firstSplit = testResult.Split(":");
 
-            if (firstSplit.Length < 2) return (null, null);
+            if (firstSplit.Length < 2) return (null, null);xx
 
             if (firstSplit[0].Split(" ").Length < 2) return (null, null);
             else if (firstSplit[1].Split(" ").Length < 1) return (null, null);
